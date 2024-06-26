@@ -1,38 +1,61 @@
 package com.restaurant.billingsystem.service;
 
 import com.restaurant.billingsystem.model.Customer;
+
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 @Service
 public class CustomerService {
-    private List<Customer> customers = new ArrayList<>();
-
-    public List<Customer> getAllCustomers() {
+    private Map<Integer, Customer> customers;
+    private int nextCustomerId;
+    
+    public CustomerService(){
+        customers = new HashMap<>();
+        nextCustomerId = 1;
+    }
+    //Add customer
+    public int createCustomer(Customer customer) {
+        int customerId = nextCustomerId++;
+        customer.setId(customerId);    
+        customers.put(customerId, customer);
+        return customerId;
+    }
+    //List all customers
+    public Map<Integer, Customer> getAllCustomers() {
         return customers;
     }
-
-    public Customer getCustomerById(Long id) {
-        return customers.stream().filter(c -> c.getId().equals(id)).findFirst().orElse(null);
+    //Find customer by their id
+    public Customer getCustomerById(int id) {
+        return customers.get(id);
     }
-
-    public Customer createCustomer(Customer customer) {
-        customers.add(customer);
-        return customer;
-    }
-
-    public Customer updateCustomer(Long id, Customer customer) {
-        Customer existingCustomer = getCustomerById(id);
-        if (existingCustomer != null) {
-            existingCustomer.setName(customer.getName());
-            existingCustomer.setEmail(customer.getEmail());
+    //Update customer by giving their id
+    public Customer updateCustomer(int id, Customer updatedCustomer) {
+        if(customers.containsKey(id)){
+            customers.put(id, updatedCustomer);
+            return updatedCustomer;
+        }else{
+            System.out.println("Customer ID not found.");
+            return null;
         }
-        return existingCustomer;
     }
-
-    public void deleteCustomer(Long id) {
-        customers.removeIf(c -> c.getId().equals(id));
+    //Delete customer by id
+    public void deleteCustomer(int id) {
+        if(customers.containsKey(id)){
+            customers.remove(id);
+        }else{
+            System.out.println("Customer ID not found.");
+        }
+    }
+    //Find user by their email
+    public Customer findUserByEmail(String email){
+        for(Customer customer: customers.values()){
+            if(customer.getEmail().equalsIgnoreCase(email)){
+                return customer;
+            }
+        }
+        return null;
     }
 }

@@ -5,7 +5,7 @@ import com.restaurant.billingsystem.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/customers")
@@ -14,27 +14,29 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping
-    public List<Customer> getAllCustomers() {
+    public Map<Integer, Customer> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 
     @GetMapping("/{id}")
-    public Customer getCustomerById(@PathVariable Long id) {
+    public Customer getCustomerById(@PathVariable int id) {
         return customerService.getCustomerById(id);
     }
 
     @PostMapping
     public Customer createCustomer(@RequestBody Customer customer) {
-        return customerService.createCustomer(customer);
+        customerService.createCustomer(customer);
+        return customer;
     }
 
     @PutMapping("/{id}")
-    public Customer updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
-        return customerService.updateCustomer(id, customer);
+    public Customer updateCustomer(@PathVariable int id, @RequestBody Customer updatedCustomer) {
+        customerService.updateCustomer(id, updatedCustomer);
+        return updatedCustomer;
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCustomer(@PathVariable Long id) {
+    public void deleteCustomer(@PathVariable int id) {
         customerService.deleteCustomer(id);
     }
 }

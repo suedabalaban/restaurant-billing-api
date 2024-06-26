@@ -1,25 +1,25 @@
 package com.restaurant.billingsystem.model;
 
 public class Customer {
-    private Long id;
+    private int id;
     private String name;
     private String email;
 
     // Constructors
     public Customer() {}
 
-    public Customer(Long id, String name, String email) {
+    public Customer(int id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
     }
 
     // Getters and Setters
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -37,5 +37,12 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customer name='" + name + '\'' +
+                '}';
     }
 }
