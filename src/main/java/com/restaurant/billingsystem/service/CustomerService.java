@@ -17,7 +17,7 @@ public class CustomerService {
         nextCustomerId = 1;
     }
     //Add customer
-    public int createCustomer(Customer customer) {
+    public int addCustomer(Customer customer) {
         int customerId = nextCustomerId++;
         customer.setId(customerId);    
         customers.put(customerId, customer);
