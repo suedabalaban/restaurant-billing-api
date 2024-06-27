@@ -1,7 +1,7 @@
 package com.restaurant.billingsystem.model;
 
 public class MenuItem {
-    private Long id;
+    private int id;
     private String name;
     private Double price;
     private String description;
@@ -9,7 +9,7 @@ public class MenuItem {
     // Constructors
     public MenuItem() {}
 
-    public MenuItem(Long id, String name, Double price, String description) {
+    public MenuItem(int id, String name, Double price, String description) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -17,11 +17,11 @@ public class MenuItem {
     }
 
     // Getters and Setters
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
