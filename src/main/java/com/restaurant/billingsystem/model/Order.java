@@ -1,43 +1,60 @@
 package com.restaurant.billingsystem.model;
 
+import com.restaurant.billingsystem.model.Order;
+import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Order {
-    private Long id;
-    private Long customerId;
-    private List<Long> menuItemIds;
+    private List<MenuItem> items;
+    private int orderId;
+    private Date orderDate;
+    private Double totalAmount;
 
-    // Constructors
-    public Order() {}
+    //Constructors
+    public Order(){
 
-    public Order(Long id, Long customerId, List<Long> menuItemIds) {
-        this.id = id;
-        this.customerId = customerId;
-        this.menuItemIds = menuItemIds;
+    }
+    
+    public Order(int orderId){
+        this.orderId = orderId;
+        this.items = new ArrayList<>();
+        this.orderDate = new Date();
+        this.totalAmount = 0.0;
     }
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
+    //Getters and setters
+    public int getOrderId(){
+        return orderId;
+    }
+    public void setOrderId(int orderId){
+         this.orderId = orderId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void addItem(MenuItem item){
+        items.add(item);
+        totalAmount += item.getPrice();
     }
 
-    public Long getCustomerId() {
-        return customerId;
+    public void removeItem(MenuItem item){
+        if(items.remove(item)){
+            totalAmount -= item.getPrice();
+        };
     }
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
+    public List<MenuItem> getItems(){
+        return items;
     }
 
-    public List<Long> getMenuItemIds() {
-        return menuItemIds;
+    public void setItems(List<MenuItem> items) {
+        this.items = items;
     }
 
-    public void setMenuItemIds(List<Long> menuItemIds) {
-        this.menuItemIds = menuItemIds;
+    public Date getOrderDate(){
+        return orderDate;
+    }
+
+    public Double getTotalAmount(){
+        return totalAmount;
     }
 }
