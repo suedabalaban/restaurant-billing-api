@@ -1,22 +1,23 @@
 package com.restaurant.billingsystem.service;
 
 import com.restaurant.billingsystem.model.MenuItem;
-import com.restaurant.billingsystem.service.MenuService;
-
 import org.springframework.stereotype.Service;
-import java.util.List;
 
+import java.util.List;
 import java.util.ArrayList;
 
 @Service
 public class MenuService {
     private List<MenuItem> menuItems;
+    private int nextItemId;
 
     public MenuService(){
         this.menuItems = new ArrayList<>();
+        this.nextItemId = 1;
     }
     //Add item
     public MenuItem addItem(MenuItem item){
+        item.setId(nextItemId++);
         menuItems.add(item);
         return item;
     }
@@ -24,6 +25,7 @@ public class MenuService {
     public MenuItem updateItem(int id, MenuItem updatedItem){
         for(int i = 0; i < menuItems.size(); i++){
            if(menuItems.get(i).getId() == id){
+                updatedItem.setId(id);
                 menuItems.set(i, updatedItem);
                 return updatedItem;
            }
@@ -35,6 +37,7 @@ public class MenuService {
         for(int i = 0; i < menuItems.size(); i++){
             if(menuItems.get(i).getId() == id){
                 menuItems.remove(i);
+                return;
             }
         }
         System.out.println("MenuItem with id " + id + " not found.");
