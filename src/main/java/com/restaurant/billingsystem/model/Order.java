@@ -1,9 +1,8 @@
 package com.restaurant.billingsystem.model;
 
-import com.restaurant.billingsystem.model.Order;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.ArrayList;
 
 public class Order {
     private List<MenuItem> items;
@@ -11,50 +10,58 @@ public class Order {
     private Date orderDate;
     private Double totalAmount;
 
-    //Constructors
-    public Order(){
-
+    // Constructors
+    public Order() {
+        this.items = new ArrayList<>();
+        this.orderDate = new Date();
+        this.totalAmount = 0.0;
     }
-    
-    public Order(int orderId){
+
+    public Order(int orderId) {
         this.orderId = orderId;
         this.items = new ArrayList<>();
         this.orderDate = new Date();
         this.totalAmount = 0.0;
     }
 
-    //Getters and setters
-    public int getOrderId(){
+    // Getters and setters
+    public int getOrderId() {
         return orderId;
     }
-    public void setOrderId(int orderId){
-         this.orderId = orderId;
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
-    public void addItem(MenuItem item){
-        items.add(item);
-        totalAmount += item.getPrice();
-    }
-
-    public void removeItem(MenuItem item){
-        if(items.remove(item)){
-            totalAmount -= item.getPrice();
-        };
-    }
-
-    public List<MenuItem> getItems(){
-        return items;
+    public List<MenuItem> getItems() {
+        return new ArrayList<>(items); //Preserve original list by returning a copy
     }
 
     public void setItems(List<MenuItem> items) {
         this.items = items;
     }
 
-    public Date getOrderDate(){
+    public Date getOrderDate() {
         return orderDate;
     }
 
-    public Double getTotalAmount(){
+    public Double getTotalAmount() {
         return totalAmount;
+    }
+
+    public void addItem(MenuItem item) {
+        if (this.items == null) {
+            this.items = new ArrayList<>();
+        }
+        this.items.add(item);
+        totalAmount += item.getPrice();
+    }
+
+    public void removeItem(MenuItem item) {
+        if (this.items != null) {
+            if (items.remove(item)) {
+                totalAmount -= item.getPrice();
+            }
+        }
     }
 }
