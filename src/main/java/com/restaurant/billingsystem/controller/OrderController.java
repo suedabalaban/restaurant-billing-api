@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
-import org.springframework.web.bind.annotation.GetMapping;
-
 
 @RestController
 @RequestMapping("/orders")
@@ -17,8 +15,7 @@ public class OrderController {
 
     @PostMapping
     public Order addOrder(@RequestBody Order order) {
-       orderService.addOrder(order);
-       return order;
+        return orderService.addOrder(order);
     }
 
     @PutMapping("/{id}")
@@ -32,17 +29,22 @@ public class OrderController {
     }
 
     @GetMapping
-    public Map<Integer,Order> getAllOrders() {
+    public Map<Integer, Order> getAllOrders() {
         return orderService.getAllOrders();
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOrder(@PathVariable int id){
+    public void deleteOrder(@PathVariable int id) {
         orderService.deleteOrder(id);
     }
 
     @GetMapping("/price/{id}")
     public Double calculateTotalPrice(@PathVariable int id) {
         return orderService.calculateTotalPrice(id);
+    }
+
+    @PutMapping("/{orderId}/addItem/{itemId}")
+    public Order addItemToOrder(@PathVariable int orderId, @PathVariable int itemId) {
+        return orderService.addItemToOrder(orderId, itemId);
     }
 }
