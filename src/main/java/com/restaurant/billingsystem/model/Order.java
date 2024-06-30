@@ -9,6 +9,7 @@ public class Order {
     private int orderId;
     private Date orderDate;
     private Double totalAmount;
+    private Customer customer;
 
     // Constructors
     public Order() {
@@ -63,5 +64,13 @@ public class Order {
                 totalAmount -= item.getPrice();
             }
         }
+    }
+
+    public Customer getCustomer(){
+        return customer;
+    }
+
+    public void setCustomer(Customer customer){
+        this.customer = customer;
     }
 }

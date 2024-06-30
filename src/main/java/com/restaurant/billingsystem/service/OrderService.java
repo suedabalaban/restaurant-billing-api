@@ -2,6 +2,7 @@ package com.restaurant.billingsystem.service;
 
 import com.restaurant.billingsystem.model.MenuItem;
 import com.restaurant.billingsystem.model.Order;
+import com.restaurant.billingsystem.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -86,5 +87,13 @@ public class OrderService {
             System.out.println("Order ID not found.");
             return null;
         }
+    }
+    //Add customer to order
+    public Order addCustomerToOrder(int orderId, Customer customer){
+        Order order = orders.get(orderId);
+        if(order != null){
+            order.setCustomer(customer);
+        }
+        return order;
     }
 }
