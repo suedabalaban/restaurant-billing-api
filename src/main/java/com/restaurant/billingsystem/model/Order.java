@@ -10,6 +10,7 @@ public class Order {
     private Date orderDate;
     private Double totalAmount;
     private Customer customer;
+    private Table table;
 
     // Constructors
     public Order() {
@@ -72,5 +73,13 @@ public class Order {
 
     public void setCustomer(Customer customer){
         this.customer = customer;
+    }
+
+    public Table getTable() {
+        return table;
+    }
+
+    public void setTable(Table table) {
+        this.table = table;
     }
 }

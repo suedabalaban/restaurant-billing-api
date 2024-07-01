@@ -2,16 +2,14 @@ package com.restaurant.billingsystem.controller;
 
 import com.restaurant.billingsystem.model.Order;
 import com.restaurant.billingsystem.model.Customer;
+import com.restaurant.billingsystem.model.Table;
 import com.restaurant.billingsystem.service.OrderService;
 import com.restaurant.billingsystem.service.CustomerService;
+import com.restaurant.billingsystem.service.TableService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
-
 
 @RestController
 @RequestMapping("/orders")
@@ -21,6 +19,9 @@ public class OrderController {
 
     @Autowired
     private CustomerService customerService;
+    
+    @Autowired
+    private TableService tableService;
 
     @PostMapping
     public Order addOrder(@RequestBody Order order) {
@@ -58,8 +59,14 @@ public class OrderController {
     }
 
     @PutMapping("/{orderId}/customer/{customerId}")
-    public Order putMethodName(@PathVariable int orderId, @PathVariable int customerId) {
+    public Order assignCustomer(@PathVariable int orderId, @PathVariable int customerId) {
         Customer customer = customerService.getCustomerById(customerId);
         return orderService.addCustomerToOrder(orderId, customer);
+    }
+
+    @PutMapping("/{orderId}/assignTable/{tableId}")
+    public Order assignTableToOrder(@PathVariable int orderId, @PathVariable int tableId) {
+        Table table = tableService.getTableById(tableId);
+        return orderService.assignTableToOrder(orderId, table);
     }
 }

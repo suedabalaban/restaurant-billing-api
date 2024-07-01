@@ -3,6 +3,7 @@ package com.restaurant.billingsystem.service;
 import com.restaurant.billingsystem.model.MenuItem;
 import com.restaurant.billingsystem.model.Order;
 import com.restaurant.billingsystem.model.Customer;
+import com.restaurant.billingsystem.model.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -93,6 +94,14 @@ public class OrderService {
         Order order = orders.get(orderId);
         if(order != null){
             order.setCustomer(customer);
+        }
+        return order;
+    }
+    //Assign table to order
+    public Order assignTableToOrder(int orderId, Table table) {
+        Order order = getOrderById(orderId);
+        if (order != null && table != null) {
+            order.setTable(table);
         }
         return order;
     }
