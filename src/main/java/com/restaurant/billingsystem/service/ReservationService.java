@@ -1,7 +1,6 @@
 package com.restaurant.billingsystem.service;
 
 import com.restaurant.billingsystem.model.Reservation;
-import com.restaurant.billingsystem.model.Table;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,6 +27,7 @@ public class ReservationService {
     public Reservation updateReservation(int reservationId, Reservation updatedReservation){
         for(int i = 0; i < reservations.size(); i++){
             if(reservations.get(i).getReservationId() == reservationId){
+                updatedReservation.setReservationId(reservationId);
                 reservations.set(i, updatedReservation);
                 return updatedReservation;
             }
@@ -51,14 +51,4 @@ public class ReservationService {
         }
         return null;
     }
-    //Assign reservation to a table
-    public void assignReservationToTable(int reservationId, Table table){
-        Reservation reservation = getReservationById(reservationId);
-        if(reservation != null){
-            reservation.setTableId(table.getTableId());
-            table.addReservation(reservation);
-        }
-    }
-
-
 }

@@ -34,6 +34,7 @@ public class CustomerService {
     //Update customer by giving their id
     public Customer updateCustomer(int id, Customer updatedCustomer) {
         if(customers.containsKey(id)){
+            updatedCustomer.setId(id);
             customers.put(id, updatedCustomer);
             return updatedCustomer;
         }else{

@@ -43,6 +43,7 @@ public class OrderService {
     //Update order
     public Order updateOrder(int orderId, Order updatedOrder) {
         if (orders.containsKey(orderId)) {
+            updatedOrder.setOrderId(orderId);
             orders.put(orderId, updatedOrder);
             return updatedOrder;
         } else {
