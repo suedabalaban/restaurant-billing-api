@@ -58,7 +58,7 @@ public class OrderController {
         return orderService.addItemToOrder(orderId, itemId);
     }
 
-    @PutMapping("/{orderId}/customer/{customerId}")
+    @PutMapping("/{orderId}/addCustomer/{customerId}")
     public Order assignCustomer(@PathVariable int orderId, @PathVariable int customerId) {
         Customer customer = customerService.getCustomerById(customerId);
         return orderService.addCustomerToOrder(orderId, customer);
