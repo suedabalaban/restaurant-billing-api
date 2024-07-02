@@ -5,7 +5,7 @@ import java.util.Date;
 public class Reservation {
     private int reservationId;
     private int tableId;
-    private Customer customer;
+    private int customerId;
     private Date reservationTime;
 
     //Constructors
@@ -13,10 +13,10 @@ public class Reservation {
 
     }
     
-    public Reservation(int reservationId, int tableId, Customer customer,Date reservationTime){
+    public Reservation(int reservationId, int tableId, int customerId,Date reservationTime){
         this.reservationId = reservationId;
         this.tableId = tableId;
-        this.customer = customer;
+        this.customerId = customerId;
         this.reservationTime = reservationTime;
     }
     
@@ -33,11 +33,11 @@ public class Reservation {
     public void setTableId(int tableId) {
         this.tableId = tableId;
     }
-    public Customer getCustomer() {
-        return customer;
+    public int getCustomerId() {
+        return customerId;
     }
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomer(int customerId) {
+        this.customerId = customerId;
     }
     public Date getReservationTime() {
         return reservationTime;
