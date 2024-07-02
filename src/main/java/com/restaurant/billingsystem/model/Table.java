@@ -55,17 +55,27 @@ public class Table{
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }
-    public void addOrder(Order order){
+    public void addOrder(Order order) {
+        if (this.orders == null) {
+            this.orders = new ArrayList<>();
+        }
         this.orders.add(order);
+        this.status = "occupied";
     }
-    public void removeOrder(Order order){
-        this.orders.remove(order);
+    public void removeOrder(Order order) {
+        if (this.orders != null) {
+            orders.remove(order);
+            if (orders.isEmpty()) {
+                this.status = "available";
+            }
+        }
     }
     public void addReservation(Reservation reservation) {
-        this.reservations.add(reservation);
+        if (!this.status.equals("occupied")) {
+            this.reservations.add(reservation);
+            this.status = "reserved";
+        } else {
+            throw new IllegalStateException("Table is currently occupied and cannot be reserved.");
+        }
     }
-    public void removeReservation(Reservation reservation) {
-        this.reservations.remove(reservation);
-    }
-
 }
