@@ -50,8 +50,8 @@ public class CustomerService {
             System.out.println("Customer ID not found.");
         }
     }
-    //Find user by their email
-    public Customer findUserByEmail(String email){
+    //Find customer by their email
+    public Customer findCustomerByEmail(String email){
         for(Customer customer: customers.values()){
             if(customer.getEmail().equalsIgnoreCase(email)){
                 return customer;

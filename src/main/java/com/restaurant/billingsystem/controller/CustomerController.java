@@ -3,6 +3,8 @@ package com.restaurant.billingsystem.controller;
 import com.restaurant.billingsystem.model.Customer;
 import com.restaurant.billingsystem.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -23,6 +25,16 @@ public class CustomerController {
         return customerService.getCustomerById(id);
     }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String email) {
+    Customer customer = customerService.findCustomerByEmail(email);
+        if (customer != null) {
+            return ResponseEntity.ok(customer);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+    
     @PostMapping
     public Customer addCustomer(@RequestBody Customer customer) {
         customerService.addCustomer(customer);
