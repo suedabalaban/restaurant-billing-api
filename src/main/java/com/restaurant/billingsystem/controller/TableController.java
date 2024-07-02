@@ -1,7 +1,6 @@
 package com.restaurant.billingsystem.controller;
 
 import com.restaurant.billingsystem.model.Table;
-import com.restaurant.billingsystem.model.Reservation;
 import com.restaurant.billingsystem.service.TableService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +38,8 @@ public class TableController {
         tableService.deleteTable(id);
     }
 
-    @PostMapping("/{tableId}/reserve")
-    public void addReservationToTable(@PathVariable int tableId, @RequestBody Reservation reservation) {
-        tableService.addReservationToTable(tableId, reservation);
+    @PostMapping("/{tableId}/addReservation/{id}")
+    public void addReservationToTable(@PathVariable int tableId, @PathVariable int reservationId) {
+        tableService.addReservationToTable(tableId, reservationId);
     }
 }
