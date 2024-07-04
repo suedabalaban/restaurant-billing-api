@@ -1,6 +1,6 @@
 # Billing System API
 
-This is a RESTful API built with Spring Boot for managing a restaurant's billing system. It includes functionalities for handling customers, orders, menu items, tables, and reservations.
+This is a RESTful API built with Spring Boot for managing restaurants. It includes functionalities for handling customers, orders, menu items, tables, and reservations.
 
 
 ### Prerequisites
@@ -17,7 +17,7 @@ This is a RESTful API built with Spring Boot for managing a restaurant's billing
 ## Installation
 1. Clone the repository:
 ```bash
-   git clone https://github.com/suedabalaban/billing-system-api
+   git clone https://github.com/suedabalaban/restaurant-management-service
 ```
 2. Change your terminal into that new subdirectory:
 ```bash
