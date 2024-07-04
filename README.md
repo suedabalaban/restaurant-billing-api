@@ -1,4 +1,4 @@
-# Billing System API
+# Restaurant Management RESTful API
 
 This is a RESTful API built with Spring Boot for managing restaurants. It includes functionalities for handling customers, orders, menu items, tables, and reservations.
 
