@@ -21,7 +21,7 @@ This is a RESTful API built with Spring Boot for managing restaurants. It includ
 ```
 2. Change your terminal into that new subdirectory:
 ```bash
-   cd billing-system-api
+   cd restaurant-management-service
 ``` 
 3. Open the project in VSCode:
 ```bash
